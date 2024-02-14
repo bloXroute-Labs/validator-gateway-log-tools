@@ -15,7 +15,7 @@ slot, relay_proxy_bid, second_highest_bid, percentage_difference, total_differen
 ```
 
 `summary.csv:`
-A CSV that includes the following fields, summarizing all of hte blocks delivered through the relay proxy
+A CSV that includes the following fields, summarizing all of the blocks delivered through the relay proxy
 ```
 total_blocks, relay_proxy_blocks, total_eth, total_extra_eth, average_percentage_difference
 ```
