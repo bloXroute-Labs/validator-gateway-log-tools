@@ -17,7 +17,9 @@ do
     slot=$(echo "$line" | sed -n 's/.*slot=\([0-9]*\).*/\1/p')
     value=$(echo "$line" | sed -n 's/.*value=\([0-9.]*\).*/\1/p')
     url=$(echo "$line" | sed -n 's/.*url="\([^"]*\).*/\1/p')
+    urlBackSlash=$(echo "$line" | sed -n 's/.*url=\\"\([^"]*\).*/\1/p')
     relays=$(echo "$line" | sed -n 's/.*relays="\([^"]*\).*/\1/p')
+    relaysBackSlash=$(echo "$line" | sed -n 's/.*relays=\\"\([^"]*\).*/\1/p')
 
     # Skip line if slot or value is empty
     if [ -z "$slot" ] || [ -z "$value" ]; then
@@ -29,6 +31,15 @@ do
     if [ -n "$relays" ]; then
         relay_or_url="$relays"
     fi
+    
+    if [ -n "$urlBackSlash" ]; then
+        relay_or_url="$urlBackSlash"
+    fi
+
+    if [ -n "$relaysBackSlash" ]; then
+        relay_or_url="$relaysBackSlash"
+    fi
+
 
     # Store all bids for the slot with their URLs or relays
     all_bids[$slot]="${all_bids[$slot]}$value|$relay_or_url "
